@@ -7,11 +7,17 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+var catalog = require('./routes/catalog');
 
 var app = express();
 
-var Mongoose = require ('mongoose');
-var db = Mongoose.createConnection('mongodb://USER:PASSWORD@localhost/DATABASE');
+//Set up Mongoose connection
+var mongoose = require ('mongoose');
+var mongoDB = 'mongodb://jlevander:Jal4572edu@localhost/cis3801';
+mongoose.connect(mongdDB);
+mongoose.Promise = global.Promise;
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 
 // view engine setup
